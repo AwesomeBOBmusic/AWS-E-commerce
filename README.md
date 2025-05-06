@@ -138,3 +138,15 @@ Step 10: ✅ Verify:
 - Lambda gets triggered
 - Data appears in DynamoDB > Orders table
 - Logs appear in Lambda > Monitor > View Logs in CloudWatch
+
+🥸 Bonus:
+
+## Explanation of Visibility Timeout and DLQ
+
+**Visibility Timeout** is crucial for reliable message processing. When a Lambda function retrieves a message from SQS, the message becomes temporarily invisible to other consumers. This prevents multiple workers from processing the same message simultaneously. The timeout gives the Lambda function time to process the message. If processing succeeds, Lambda deletes the message. If processing fails (or Lambda crashes), the message becomes visible again after the timeout for another attempt.
+
+**Dead Letter Queue (DLQ)** enhances system reliability by handling messages that repeatedly fail processing (after 3 attempts in our case). Benefits include:
+1. **Error Isolation**: Problematic messages are quarantined for investigation without blocking the main queue
+2. **System Stability**: Prevents infinite retry loops that could consume resources
+3. **Recovery Option**: Messages can be reprocessed after fixing the underlying issue
+4. **Monitoring**: DLQ size serves as an important metric for system health
