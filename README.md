@@ -134,7 +134,7 @@ Step 9: Test the Full Flow
 
 Step 10: ✅ Verify:
 
-Message is in SQS
-Lambda gets triggered
-Data appears in DynamoDB > Orders table
-Logs appear in Lambda > Monitor > View Logs in CloudWatch
+- Message is in SQS
+- Lambda gets triggered
+- Data appears in DynamoDB > Orders table
+- Logs appear in Lambda > Monitor > View Logs in CloudWatch
