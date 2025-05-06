@@ -9,6 +9,7 @@ Event-Driven Order Notification System, using
 
 • Amazon DynamoDB to store order data
 
+![Alt Text]((Arch)/image.png)
 
 Step 1: DynamoDB Setup
 
