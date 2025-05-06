@@ -11,7 +11,7 @@ Event-Driven Order Notification System, using
 
 ![Alt Text]((Arch)/image.png)
 
-Step 1: DynamoDB Setup
+### Step 1: DynamoDB Setup
 
 1. Go to AWS Console > DynamoDB > Tables
 2. Click "Create table"
@@ -19,7 +19,7 @@ Step 1: DynamoDB Setup
 4. Partition key: "orderId" (String)
 5. Leave all other settings default, click Create table
 
-Step 2: Create SNS Topic
+### Step 2: Create SNS Topic
 
 1. Go to SNS > Topics
 2. Click “Create topic”
@@ -27,7 +27,7 @@ Step 2: Create SNS Topic
 4. Name it: OrderTopic
 5. Leave default settings, click Create topic
 
-Step 3: Create SQS Queues
+### Step 3: Create SQS Queues
 A. Create the Dead-Letter Queue
 
 1. Go to SQS > Queues > Create queue
@@ -44,14 +44,14 @@ B. Create the Main Queue
 4. Set maxReceiveCount = 3
 5. Click Create queue
 
-Step 4: Subscribe SQS Queue to SNS Topic
+### Step 4: Subscribe SQS Queue to SNS Topic
 1. Go to SNS > OrderTopic > Subscriptions
 2. Click “Create subscription”
 3. Set: Protocol: Amazon SQS
 4. Endpoint: ARN of OrderQueue
 5. Click Create subscription
 
-Step 5: Lambda Function (Python 3.9)
+### Step 5: Lambda Function (Python 3.9)
 
 1. Go to AWS Lambda > Functions > Create function
 2. Name it: ProcessOrderFunction
@@ -59,18 +59,18 @@ Step 5: Lambda Function (Python 3.9)
 4. Set Handler to index.lambda_handler
 5. Architecture x86_64
 
-Step 6: Add the Code to Lambda
+### Step 6: Add the Code to Lambda
 1. Add index.py file in code
 2. Click Deploy
 
-Step 7: Add Trigger to Lambda
+### Step 7: Add Trigger to Lambda
 1. Go to Lambda function
 2. Click Add trigger
 3. Choose SQS
 4. Select OrderQueue
 5. Click Add
 
-Step 8: Add IAM Roles
+### Step 8: Add IAM Roles
 1. Go to IAM
 2. Click Roles
 3. Choose ProcessOrderFunction-role
@@ -119,7 +119,7 @@ Step 8: Add IAM Roles
 	]
 }
 
-Step 9: Test the Full Flow
+### Step 9: Test the Full Flow
 1. Go to SNS > OrderTopic > Publish message
 2. Paste the following JSON into the Message body:
 {
@@ -139,9 +139,7 @@ Step 9: Test the Full Flow
 - Data appears in DynamoDB > Orders table
 - Logs appear in Lambda > Monitor > View Logs in CloudWatch
 
-🥸 Bonus:
-
-## Explanation of Visibility Timeout and DLQ
+## 🥸 Bonus: Explanation of Visibility Timeout and DLQ
 
 **Visibility Timeout** is crucial for reliable message processing. When a Lambda function retrieves a message from SQS, the message becomes temporarily invisible to other consumers. This prevents multiple workers from processing the same message simultaneously. The timeout gives the Lambda function time to process the message. If processing succeeds, Lambda deletes the message. If processing fails (or Lambda crashes), the message becomes visible again after the timeout for another attempt.
 
