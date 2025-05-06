@@ -28,7 +28,7 @@ Event-Driven Order Notification System, using
 5. Leave default settings, click Create topic
 
 ### Step 3: Create SQS Queues
-A. Create the Dead-Letter Queue
+#### A. Create the Dead-Letter Queue
 
 1. Go to SQS > Queues > Create queue
 2. Select Standard Queue
@@ -36,7 +36,7 @@ A. Create the Dead-Letter Queue
 4. Keep all default settings
 5. Click Create queue
 
-B. Create the Main Queue
+#### B. Create the Main Queue
 
 1. Create another queue named: OrderQueue
 2. Scroll down to the Dead-letter queue (DLQ) section
