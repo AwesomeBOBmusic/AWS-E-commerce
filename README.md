@@ -132,7 +132,7 @@ Step 9: Test the Full Flow
 }
 3. Click Publish message
 
-Step 10: ✅ Verify:
+### Step 10: ✅ Verify:
 
 - Message is in SQS
 - Lambda gets triggered
