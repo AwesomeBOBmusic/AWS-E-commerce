@@ -1,4 +1,5 @@
 # AWS-E-commerce
+# Steps & Bonus
 Event-Driven Order Notification System, using 
 
 • Amazon SNS for broadcasting notifications 
